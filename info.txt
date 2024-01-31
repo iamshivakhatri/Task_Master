@@ -10,5 +10,7 @@ if request.method == 'POST':
         new_task = Todo(content = task_content)
 
 
+pip3 install gunicorn
+
 To host the website
 heroku login
