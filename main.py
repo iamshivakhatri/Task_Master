@@ -32,12 +32,10 @@ def index():
             return "Error adding the task to the database"
     else:
         tasks = Todo.query.order_by(Todo.date_created).all()
-        print("This is tasks",tasks)
-        print("hello i am else")
-        return render_template('index.html', tasks = tasks)
+        return render_template('index.html', task = tasks)
 
 
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
-    app.run(debug=True, port= 5001)
+    app.run(debug=True)

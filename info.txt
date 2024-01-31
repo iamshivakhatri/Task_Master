@@ -1,0 +1,10 @@
+First install the virtual environment
+if the install location is not in the system path then add it there
+Activate the environment -> source env/bin/activate
+install flask flasksqlchemy
+
+
+retrieving the content from the form 
+if request.method == 'POST':
+        task_content = request.form['content']
+        new_task = Todo(content = task_content)

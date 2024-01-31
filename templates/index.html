@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block head %} 
+<title>Task Master</title>
+
+{% endblock %}
+
+{% block body %} 
+    <!-- Your content for the second block goes here -->
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 500px;
+            margin: 0 auto;
+        }
+    
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+    
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        form {
+        display: flex;
+        flex-direction: column;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    input[type="text"] {
+        margin-bottom: 10px;
+        padding: 8px;
+        font-size: 16px;
+    }
+
+    input[type="submit"] {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+    </style>
+
+    <div class="content">
+        <h1> Task Master</h1>
+
+        <table>
+            <tr>
+                <th>Task</th>
+                <th>Added</th>
+                <th>Actions</th>
+            </tr>
+            {% for task in tasks %}
+            <tr>
+                <td>{{ task.content }}</td>
+                <td>{{ task.date_created.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                <td>
+                    <a href="#">Delete</a>
+                    <br>
+                    <a href="#">Update</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        
+        
+
+        <form action="/" method="POST">
+            <input type="text" name="content" id="content">
+            <input type="submit" value="Add Tasks">
+        </form>
+        
+
+    </div>
+{% endblock %}
