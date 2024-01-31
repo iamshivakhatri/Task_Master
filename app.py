@@ -35,6 +35,39 @@ def index():
         print("This is tasks",tasks)
         print("hello i am else")
         return render_template('index.html', tasks = tasks)
+    
+
+@app.route('/delete/<int:id>')
+def delete(id):
+    task_to_delete = Todo.query.get_or_404(id)
+    print("This is deleted", task_to_delete)
+    
+
+    try:
+        db.session.delete(task_to_delete)
+        db.session.commit()
+        return redirect('/')
+    except:
+        return "Error deleting the task"
+    
+@app.route('/update/<int:id>', methods = ['GET', 'POST'])
+def update(id):
+    task = Todo.query.get_or_404(id)
+    print("This is the task to be edited", task)
+
+    if request.method == 'POST':
+        task.content = request.form['content']
+
+        try:
+            db.session.commit()
+            return redirect("/")
+        except:
+            return "Error in uploading the data"
+    else:
+        return render_template('update.html', task = task)
+        
+    
+
 
 
 if __name__ == "__main__":
